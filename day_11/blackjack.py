@@ -11,8 +11,8 @@ def pick_a_card(deck):
     deck.append(card)
     return deck
 
-def check_player(deck):
-    if sum(deck) == 21:
+def check_deck(deck):
+    if sum(deck) <= 21:
         return True
     elif 11 in deck and sum(deck) > 21:
         idx = deck.index(11)
@@ -22,27 +22,89 @@ def check_player(deck):
     else:
         return False
 
-play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+def game_status(player_deck, computer_deck):
+    print(f"Your cards: {player_deck}, current score: {sum(player_deck)}")
+    print(f"Computer's first card: {computer_deck[0]}")
 
 
-while play == "y":
+
+
+
+while True:
+    play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
     player_deck = pick_a_card(player_deck)
     player_deck = pick_a_card(player_deck)
     computer_deck = pick_a_card(computer_deck)
     computer_deck = pick_a_card(computer_deck)
     print(logo)
-    print(f"Your cards: {player_deck}, current score: {sum(player_deck)}")
-    print(f"Computer's first card: {computer_deck[0]}")
-    draw_a_card = input("Type 'y' to get another card, type 'n' to pass: ")
-    while draw_a_card == 'y':
-        player_deck = pick_a_card(player_deck)
-        print(f"Your cards: {player_deck}, current score: {sum(player_deck)}")
-        print(f"Computer's first card: {computer_deck[0]}")
+    game_status(player_deck, computer_deck)
+    draw_a_card = 'y'
+    while play == "y":
         draw_a_card = input("Type 'y' to get another card, type 'n' to pass: ")
-    if draw_a_card == 'n':
-        while sum(computer_deck) <=21:
-            computer_deck = pick_a_card(computer_deck)
-            if sum(compu)
+        if draw_a_card == "y":
+            player_deck = pick_a_card(player_deck)
+            check_player = check_deck(player_deck)
+            game_status(player_deck,computer_deck)
+            if check_player == False:
+                print("You went over. You lose 😭")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# while True:
+#     play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+#     if play == "n":
+#         break
+#     while play == "y":
+#         player_deck = pick_a_card(player_deck)
+#         player_deck = pick_a_card(player_deck)
+#         computer_deck = pick_a_card(computer_deck)
+#         computer_deck = pick_a_card(computer_deck)
+#         print(logo)
+#         print(f"Your cards: {player_deck}, current score: {sum(player_deck)}")
+#         print(f"Computer's first card: {computer_deck[0]}")
+#         draw_a_card = input("Type 'y' to get another card, type 'n' to pass: ")
+#         while draw_a_card == 'y':
+#             player_deck = pick_a_card(player_deck)
+#             print(f"Your cards: {player_deck}, current score: {sum(player_deck)}")
+#             print(f"Computer's first card: {computer_deck[0]}")
+#             if sum(player_deck) > 21:
+#                 print(f"Your final hand: {player_deck}, final score: {sum(player_deck)}")
+#                 print(f"Computer's final hand: {computer_deck}, final score: {sum(computer_deck)}")
+#                 print("You went over. You lose 😤")
+#                 break
+#             draw_a_card = input("Type 'y' to get another card, type 'n' to pass: ")
+#         if draw_a_card == 'n':
+#             while sum(computer_deck) <=21:
+#                 computer_deck = pick_a_card(computer_deck)
+#                 if sum(computer_deck) > 21:
+#                     computer_deck.pop()
+#             print(f"Your final hand: {player_deck}, final score: {sum(player_deck)}")
+#             print(f"Computer's final hand: {computer_deck}, final score: {sum(computer_deck)}")
+#
+#         if sum(player_deck) < sum(computer_deck):
+#             print("You lose 😤")
+#         elif sum(player_deck) > sum(computer_deck):
+#             print("You win!")
+#         else:
+#             print("Draw")
+#
 
 
 
