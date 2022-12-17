@@ -4,6 +4,7 @@ state_of_the_machine = {
     "Coffee": 100,
     "Money": 0
 }
+
 coffee = {
     "espresso": {
         "Water": 50,
@@ -33,18 +34,25 @@ def report(state_of_the_machine):
 
 
 def check_resources(state_of_the_machine, coffee, what_to_do):
-    check = []
     for i in state_of_the_machine:
-        if state_of_the_machine.get(i) >= coffee[what_to_do].get(i):
-            check.append(True)
-    if any(check) == False:
-        return False
-    else:
-        return True
+        if state_of_the_machine[i] == "Money":
+            pass
+        elif state_of_the_machine[i] < coffee[what_to_do][i]:
+            print(f"Sorry there is not enough {i.lower()}.")
+            return False
+        else:
+            return True
 
 
 def do_a_coffee(what_to_do, state_of_the_machine, money, coffee):
+    for i in state_of_the_machine:
+        state_of_the_machine[i] = state_of_the_machine[i] - coffee[what_to_do].get(i)
+    if money > coffee[what_to_do]["Money"]:
+        change = round(money - coffee[what_to_do]["Money"],2)
+        print(f"Here is ${change} in change.")
+    print(f"Here is your {what_to_do}. Enjoy!")
 
+    return state_of_the_machine
 
 def calculate_coins():
     quarter = int(input("how many quarters?: "))
@@ -64,8 +72,10 @@ while power:
         if money < coffee[what_to_do]["Money"]:
             print("Sorry that's not enough money. Money refunded.")
         else:
-            check = check_resources()
+            check = check_resources(state_of_the_machine, coffee, what_to_do)
             if check == True:
-                do_a_coffee()
+                do_a_coffee(what_to_do,state_of_the_machine, money, coffee)
             else:
-                print("Sorry there is not enough water.")
+                continue
+    elif what_to_do == "off":
+        break
