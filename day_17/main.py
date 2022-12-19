@@ -1,14 +1,12 @@
-class User:
+from question_model import Question
+from data import question_data
+from quiz_brain import QuizBrain
 
-    def __init__(self, user_id, username):
-        print("new user being created...")
-        self.id = user_id
-        self.username = username
-        self.followers = 0
-        self.following = 0
-
-    def follow(self, user):
+question_bank = [Question(i["question"],i["correct_answer"]) for i in question_data]
 
 
 
-user_1 = User("001", "Mich")
+quiz = QuizBrain(question_bank)
+
+while quiz.still_has_questions():
+    quiz.next_question()
