@@ -13,7 +13,6 @@ LONG_BREAK_MIN = 25
 reps = 0
 timer = None
 
-
 # ---------------------------- TIMER RESET ------------------------------- #
 
 def reset_timer():
@@ -23,7 +22,6 @@ def reset_timer():
     canvas.itemconfig(timer_text, text="00:00")
     global reps
     reps = 0
-
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 
@@ -65,6 +63,7 @@ def countdown(count):
         check_marks.config(text=mark)
 
 # ---------------------------- UI SETUP ------------------------------- #
+
 window = Tk()
 window.title("Pomodoro")
 window.config(padx=100, pady=50, bg=YELLOW)
